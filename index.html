@@ -10,6 +10,10 @@
             align-items: center; 
             background-color: #f0f0f0;
             margin: 0;
+            user-select: none; /* Biar teks gak bisa disorot */
+            -webkit-user-select: none; /* Untuk browser berbasis WebKit */
+            -moz-user-select: none; /* Untuk Firefox */
+            -ms-user-select: none; /* Untuk Internet Explorer */
         }
         .image-container {
             position: relative;
@@ -18,12 +22,30 @@
             max-width: 100%;
             height: auto;
             pointer-events: none; /* Biar gak bisa klik kanan */
+            -webkit-user-drag: none; /* Biar gak bisa drag gambar */
+            filter: none; /* Menghapus efek blur jika ada */
         }
     </style>
+
+    <script>
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "PrintScreen" || e.keyCode === 44) {
+                alert("Screenshot is disabled on this site.");
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener("keyup", function (e) {
+            if (e.key === "PrintScreen" || e.keyCode === 44) {
+                navigator.clipboard.writeText("");
+                alert("Screenshot blocked!");
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="image-container">
-        <img src="https://github.com/sftrizkiana/ttd-arman/blob/main/TTD%20Armansyah.jpg?raw=true" alt="Your Image">
+        <img src="https://raw.githubusercontent.com/anndefined/ttd-arman/refs/heads/main/TTD%20Armansyah.jpg" alt="Your Image">
     </div>
 </body>
 </html>
